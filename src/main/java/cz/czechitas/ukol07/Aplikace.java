@@ -6,9 +6,13 @@ import java.util.List;
  * Spouštěcí třída aplikace
  */
 public class Aplikace {
-    public static void main(String[] args) {
-        KnihaSluzba knihaSluzba = new KnihaSluzba();
+    private KnihaSluzba knihaSluzba;
 
+    public Aplikace(KnihaSluzba knihaSluzba) {
+        this.knihaSluzba = knihaSluzba;
+    }
+
+    public void execute() {
         List<Kniha> vsechnyKnihy = knihaSluzba.vratVsechnyKnihy();
         System.out.println("Celkový počet knih: " + vsechnyKnihy.size());
 
@@ -23,5 +27,11 @@ public class Aplikace {
         for (Kniha kniha : knihyVRoce1845) {
             System.out.println(kniha.getAutor() + ": " + kniha.getNazev());
         }
+    }
+
+    public static void main(String[] args) {
+        KnihaSluzba knihaSluzba = new KnihaSluzba();
+        Aplikace aplikace = new Aplikace(knihaSluzba);
+        aplikace.execute();
     }
 }
